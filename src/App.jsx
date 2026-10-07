@@ -13,6 +13,9 @@ const tachesInitiales = [
 function App() {
   const [taches, setTaches] = useState(tachesInitiales);
 
+  const [filtre, setFiltre] = useState("toutes");
+
+
   const ajouterTache = (texte) => {
     const nouvelleTache = {
       id: Date.now(),
@@ -42,6 +45,19 @@ function App() {
     setTaches(taches.map((tache) => ({ ...tache, terminee: true })));
   };
 
+
+  const tachesFiltrees = taches.filter((tache) => {
+    if (filtre === "en-cours") {
+      return !tache.terminee;
+    }
+
+    if (filtre === "terminees") {
+      return tache.terminee;
+    }
+
+    return true;
+  });
+
   return (
     <div className="container">
       <h1>Mes tâches</h1>
@@ -53,12 +69,6 @@ function App() {
         onToggle={basculerTache}
         onSupprimer={supprimerTache}
       />
-
-      {/* Compteur (en attente des questions 14-16) */}
-      <Compteur taches={taches} />
-
-      {/* Filtres (en attente des questions 17-19) */}
-      <Filtres />
 
       <div className="actions-globales">
         <button onClick={supprimerTerminees}>
