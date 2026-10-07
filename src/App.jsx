@@ -1,8 +1,10 @@
-```jsx
+
 import { useState } from "react";
+import TaskForm from "./components/TaskForm";
+import TaskList from "./components/TaskList";
 import Compteur from "./components/Compteur";
 import Filtres from "./components/Filtres";
-import TaskList from "./components/TaskList";
+
 
 const tachesInitiales = [
   { id: 1, texte: "Réviser le chapitre 3", terminee: false },
@@ -14,6 +16,39 @@ function App() {
   const [taches, setTaches] = useState(tachesInitiales);
 
   const [filtre, setFiltre] = useState("toutes");
+
+
+
+  const ajouterTache = (texte) => {
+    const nouvelleTache = {
+      id: Date.now(),
+      texte: texte,
+      terminee: false,
+    };
+    setTaches([...taches, nouvelleTache]);
+  };
+
+  const basculerTache = (id) => {
+    setTaches(
+      taches.map((tache) =>
+        tache.id === id ? { ...tache, terminee: !tache.terminee } : tache
+      )
+    );
+  };
+
+  const supprimerTache = (id) => {
+    setTaches(taches.filter((tache) => tache.id !== id));
+  };
+
+  const supprimerTerminees = () => {
+    setTaches(taches.filter((tache) => !tache.terminee));
+  };
+
+  const toutMarquerFait = () => {
+    setTaches(taches.map((tache) => ({ ...tache, terminee: true })));
+  };
+
+
 
   const tachesFiltrees = taches.filter((tache) => {
     if (filtre === "en-cours") {
@@ -28,17 +63,34 @@ function App() {
   });
 
   return (
-    <div>
+
+    <div className="container">
       <h1>Mes tâches</h1>
 
-      <TaskList taches={tachesFiltrees} />
+      <TaskForm onAjout={ajouterTache} />
 
+      <TaskList
+        taches={taches}
+        onToggle={basculerTache}
+        onSupprimer={supprimerTache}
+      />
+
+      <div className="actions-globales">
+        <button onClick={supprimerTerminees}>
+          Supprimer les tâches terminées
+        </button>
+        <button onClick={toutMarquerFait}>
+          Tout marquer comme fait
+        </button>
+      </div>
       <Compteur taches={taches} />
 
       <Filtres filtre={filtre} onChange={setFiltre} />
+
     </div>
   );
 }
 
 export default App;
-```
+
+
