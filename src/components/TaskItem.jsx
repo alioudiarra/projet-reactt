@@ -11,3 +11,4 @@ function TaskItem({ tache, onToggle, onSupprimer }) {
     </li>
   );
 }
+export default TaskItem;

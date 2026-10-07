@@ -4,6 +4,7 @@ import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 import Compteur from "./components/Compteur";
 import Filtres from "./components/Filtres";
+import  "./App.css";
 
 
 const tachesInitiales = [

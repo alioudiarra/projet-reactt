@@ -182,3 +182,183 @@
     border-right-color: var(--border);
   }
 }
+/* =========================
+   Gestionnaire de tâches
+   ========================= */
+
+.container {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+.container h1 {
+  margin-bottom: 30px;
+  font-size: 32px;
+}
+
+/* Formulaire */
+
+form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+form input {
+  flex: 1;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  outline: none;
+}
+
+form input:focus {
+  border-color: var(--accent);
+}
+
+form button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  background: var(--accent);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+form button:hover {
+  opacity: 0.9;
+}
+
+/* Liste des tâches */
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px;
+  margin-bottom: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--social-bg);
+}
+
+li span {
+  flex: 1;
+}
+
+/* Tâche terminée */
+
+.terminee {
+  color: #888;
+  text-decoration: line-through;
+}
+
+/* Bouton supprimer */
+
+li button {
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+li button:hover {
+  color: red;
+}
+
+/* Compteur */
+
+.counter {
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+  margin: 20px 0;
+}
+
+.counter:hover {
+  border-color: var(--accent-border);
+}
+
+/* Filtres */
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.filters button {
+  padding: 8px 15px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.filters button:hover {
+  background: var(--accent-bg);
+}
+
+.filters button.actif {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+/* Actions globales */
+
+.actions-globales {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.actions-globales button {
+  padding: 10px 15px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.actions-globales button:hover {
+  background: var(--accent-bg);
+}
+
+/* Responsive */
+
+@media (max-width: 600px) {
+  .container {
+    padding: 25px 15px;
+  }
+
+  form {
+    flex-direction: column;
+  }
+
+  .filters,
+  .actions-globales {
+    flex-direction: column;
+  }
+
+  .filters button,
+  .actions-globales button {
+    width: 100%;
+  }
+}
